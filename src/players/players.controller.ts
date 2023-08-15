@@ -30,6 +30,7 @@ export class PlayersController {
       await channel.ack(originalMessage);
     } catch (error) {
       this.logger.error(`error: ${JSON.stringify(error.message, null, 2)}`);
+      await channel.nack(originalMessage);
     }
   }
 
@@ -45,6 +46,7 @@ export class PlayersController {
       return result;
     } catch (error) {
       this.logger.error(`error: ${JSON.stringify(error.message, null, 2)}`);
+      await channel.nack(originalMessage);
     }
   }
 }
